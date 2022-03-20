@@ -7,18 +7,7 @@
     <title>Document</title>
 </head>
 <body>
-
-<form action="login.php" method="post">
-<input type="text" name="login" /> <br><br>
-<input type="password" name="password" /> <br><br>
-<button type="submit">log in</button>
-</form>
-
-<?php
-
-
-
-
-?>
+    <a href="./konto/login.php">Zaloguj</a><br>
+    <a href="./konto/register.php">Zarejestruj</a>
 </body>
 </html>
