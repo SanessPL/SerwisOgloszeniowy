@@ -8,6 +8,12 @@
 </head>
 <body>
     <?php
+        /**
+         *   php code 
+         * Register system that check is our login already taken in database and if not create new user when all assumptions are filled.
+         * access:	private
+         * author: 	Patryk Kurzątek
+         */
         require_once "../config.php";
 
         $username = $password = $confirm_password = $email = "";
@@ -15,7 +21,7 @@
 
         if (empty(trim(@$_POST["username"]))) {
             $username_err = "Wprowadz nazwe uzytkownika.";
-        } elseif (!preg_match('//', trim(@$_POST["username"]))) {
+        } else if (!preg_match('//', trim(@$_POST["username"]))) {
             
         } else {
             $sql = "SELECT id FROM users WHERE username = ?";

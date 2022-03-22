@@ -16,6 +16,7 @@
         }
     ?>
 
-    <a href="logout.php">Wyloguj</a>
+    <a href="logout.php">Wyloguj<br></a>
+    <a href="offers.php">Dodaj Ogłoszenie</a>
 </body>
 </html>

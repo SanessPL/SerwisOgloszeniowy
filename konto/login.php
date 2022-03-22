@@ -8,6 +8,12 @@
 </head>
 <body>
     <?php
+    /**
+    *   php code 
+    * Login system in code that check is password and login correct.
+    * access:	private
+    * author: 	Patryk Kurzątek
+    */
         session_start();
 
         if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
@@ -22,9 +28,9 @@
 
         if (empty(trim(@$_POST["username"]))) {
             $username_err = "Wprowadź nazwę użytkownika";
-        } elseif (false) {
-
-        } else {
+        } elseif (false) {}
+        
+        else {
             $sql = "SELECT id FROM users WHERE username = ?";
 
             if ($stmt = $conn->prepare($sql)) {

@@ -18,5 +18,8 @@ CREATE TABLE users (
 CREATE TABLE offers (
    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
    user_id INT NOT NULL REFERENCES users(id),
-   price DECIMAL(10, 2)
+   title varchar(50),
+   price DECIMAL(10, 2),
+   offer_description varchar(255)
 );
+
