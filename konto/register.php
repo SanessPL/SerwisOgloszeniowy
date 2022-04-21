@@ -8,16 +8,26 @@
 </head>
 <body>
     <?php
-        /**
-         *   php code 
-         * Register system that check is our login already taken in database and if not create new user when all assumptions are filled.
-         * access:	private
-         * author: 	Patryk Kurzątek
-         */
+    /**
+     *   php code 
+     * Register system that check is our login already taken in database and if not create new user when all assumptions are filled.
+     * access:	private
+     * author: 	Patryk Kurzątek
+     */
+
+    if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
+        header("Location: index.php");
+        exit;
+    }
+
+    $username = $password = $confirm_password = $email = "";
+    $username_err = $password_err = $confirm_password_err = $email_err = "";
+
+    function register() {
         require_once "../config.php";
 
-        $username = $password = $confirm_password = $email = "";
-        $username_err = $password_err = $confirm_password_err = $email_err = "";
+        global $username, $password, $confirm_password, $email;
+        global $username_err, $password_err, $confirm_password_err, $email_err;
 
         if (empty(trim(@$_POST["username"]))) {
             $username_err = "Wprowadz nazwe uzytkownika.";
@@ -113,9 +123,17 @@
         }
         
         $conn->close();
+
+    }
+
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        register();
+    }
+    
     ?>
 
     <form action="#" method="post">
+        Masz już konto? <a href="./login">Zaloguj się</a>
         <div>
             <input type="text" name="username" placeholder="Nazwa Użytkownika">
             <span class="error"><?php echo($username_err) ?></span>

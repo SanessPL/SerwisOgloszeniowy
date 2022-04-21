@@ -4,32 +4,41 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>Logowanie</title>
 </head>
 <body>
     <?php
     /**
-    *   php code 
-    * Login system in code that check is password and login correct.
+    * Login system.
+    * 
     * @access	private
     * @author 	Patryk Kurzątek
     */
+    if (!isset($_SESSION)) {
         session_start();
+    }
 
-        if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
-            header("location: index.php");
-            exit;
-        }
+    if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
+        header("Location: index.php");
+        exit;
+    }
 
-        require_once "../config.php";
+    $username = $password = "";
+    $username_err = $password_err = $login_err = "";
 
-        $username = $password = '';
-        $username_err = $password_err = '';
+    function login() {
+        require_once("../config.php");
+
+        global $username, $password;
+        global $username_err, $password_err, $login_err;
+
 
         if (empty(trim(@$_POST["username"]))) {
-            $username_err = "Wprowadź nazwę użytkownika";
-        } elseif (false) {}
-        
+            $username_err = "Proszę podać nazwę użytkownika.";
+        } elseif (preg_match("/[^A-z0-9]/", $_POST["username"])) {
+            $username_err = "Nazwa użytkownika może zawierać tylko litery, cyfry i znak \"_\".";
+        }
         else {
             $sql = "SELECT id FROM users WHERE username = ?";
 
@@ -45,7 +54,7 @@
                 if ($stmt->num_rows == 1) {
                     $username = $param_username;
                 } else {
-                    $password_err = "Nazwa użytkownika lub hasło są nieprawidłowe.";
+                    $login_err = "Nazwa użytkownika lub hasło są nieprawidłowe.";
                 }
             } else {
                 echo("cos sie wysypalo");
@@ -55,7 +64,7 @@
         }
 
         if (empty(trim(@$_POST["password"]))) {
-            $password_err = "Proszę podać hasło.";
+            
         } elseif (strlen(trim($_POST["password"])) < 6) {
             $password_err = "Hasło musi mieć conajmniej 6 znaków długości.";
         } else {
@@ -94,18 +103,20 @@
                 }
             }
         }
+    }
 
-
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        login();
+    }
+    
     ?>
 
     <form action="" method="post">
-        <?php 
-        if (!empty($login_err)) {
-            echo '<span class="error">' . $login_err . '</span>';
-        }
-        ?>
+        Nie posiadasz konta? <a href="./register">Zarejestruj się</a>
+        <br>
+        <span class="error"><?php echo($login_err) ?></span>
         <div>
-            <input type="text" name="username" placeholder="Nazwa Użytkownika">
+            <input type="text" name="username" placeholder="Nazwa Użytkownika" value="<?php echo($username) ?>">
             <span class="error"><?php echo($username_err) ?></span>
         </div>
         <div>

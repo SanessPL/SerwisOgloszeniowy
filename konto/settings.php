@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panel Użytkownika</title>
+    <title>Ustawienia</title>
 </head>
 <body>
     <?php
@@ -16,8 +16,8 @@
     }
     ?>
 
-    <a href="logout.php">Wyloguj</a><br>
-    <a href="offers.php">Dodaj Ogłoszenie</a><br>
-    <a href="settings.php">Ustawienia Konta</a>
+    <a href="change_name.php">Zmień imię</a><br>
+    <a href="change_password.php">Zmień hasło</a><br>
+    <a href="logout.php">Wyloguj</a>
 </body>
 </html>
