@@ -11,8 +11,8 @@
     /**
     *   php code 
     * Login system in code that check is password and login correct.
-    * access:	private
-    * author: 	Patryk Kurzątek
+    * @access	private
+    * @author 	Patryk Kurzątek
     */
         session_start();
 
