@@ -7,6 +7,7 @@
     <title>Document</title>
 </head>
 <?php 
+    function addOffer(){
     require_once "../config.php";
     session_start();
 
@@ -14,11 +15,8 @@
             header("location: login.php");
             exit;
         }
-
-    if(isset($_POST['add_offer']) && $_POST['add_offer'] == 1){
        $title = $_POST['title'];
        $id = $_SESSION["id"];
-       var_dump($id);
        $description = $_POST['offer_description'];
        $zapytanie = "INSERT INTO offers (title, user_id , offer_description) VALUES ('$title','$id','$description')";
        $wynik = mysqli_query($conn, $zapytanie);
@@ -26,6 +24,10 @@
 	    	echo("Prawidłowo dodano ogłoszenie");	
 	   }
     }
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        addOffer();
+    }
+
 ?> 
 <body> 
 <form action="#" method="post" enctype="multipart/form-data">
@@ -36,7 +38,6 @@
             <input type="text" name="offer_description" placeholder="Opis ogłoszenia (255)">
         </div>
         <br><button type="submit" >Dodaj ogłoszenie </button>
-        <input type="hidden" value="1" name="add_offer">
     </form>
 </body>
 </html>
