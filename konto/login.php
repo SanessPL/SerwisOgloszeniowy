@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../css/styles.css">
     <title>Logowanie</title>
 </head>
 <body>
+    <?php require_once "../navbar.php" ?>
     <?php
     /**
     * Login system.
@@ -42,14 +43,14 @@
         else {
             $sql = "SELECT id FROM users WHERE username = ?";
 
-            if ($stmt = $conn->prepare($sql)) {
+            if ($stmt = mysqli_prepare($conn, $sql)) {
                 $stmt->bind_param("s", $param_username);
             }
 
             $param_username = trim($_POST["username"]);
 
-            if ($stmt->execute()) {
-                $stmt->store_result();
+            if (mysqli_stmt_execute($stmt)) {
+                mysqli_stmt_store_result($stmt);
 
                 if ($stmt->num_rows == 1) {
                     $username = $param_username;
@@ -57,14 +58,14 @@
                     $login_err = "Nazwa użytkownika lub hasło są nieprawidłowe.";
                 }
             } else {
-                echo("cos sie wysypalo");
+                echo("Coś poszło nie tak.");
             }
 
-            $stmt->close();
+            mysqli_stmt_close($stmt);
         }
 
         if (empty(trim(@$_POST["password"]))) {
-            
+            $password_err = "Wprowadź hasło.";
         } elseif (strlen(trim($_POST["password"])) < 6) {
             $password_err = "Hasło musi mieć conajmniej 6 znaków długości.";
         } else {
@@ -72,26 +73,28 @@
         }
 
         if (empty($username_err) && empty($password_err)) {
-            $sql = "SELECT id, username, password FROM users WHERE username = ?";
+            $sql = "SELECT id, username, first_name, last_name, password FROM users WHERE username = ?";
 
-            if ($stmt = $conn->prepare($sql)) {
+            if ($stmt = mysqli_prepare($conn, $sql)) {
                 $stmt->bind_param("s", $param_username);
             }
 
             $param_username = $username;
 
-            if ($stmt->execute()) {
-                $stmt->store_result();
+            if (mysqli_stmt_execute($stmt)) {
+                mysqli_stmt_store_result($stmt);
 
                 if ($stmt->num_rows == 1) {
-                    $stmt->bind_result($id, $username, $hashed_password);
-                    if ($stmt->fetch()) {
+                    mysqli_stmt_bind_result($stmt, $id, $username, $first_name, $last_name, $hashed_password);
+                    if (mysqli_stmt_fetch($stmt)) {
                         if (password_verify($password, $hashed_password)) {
                             session_start();
 
                             $_SESSION["loggedin"] = true;
                             $_SESSION["id"] = $id;
-                            $_SESSION["username"] = $username;        
+                            $_SESSION["first_name"] = $first_name;
+                            $_SESSION["last_name"] = $last_name;
+                            $_SESSION["username"] = $username;
 
                             header("location: index.php");
                         } else {

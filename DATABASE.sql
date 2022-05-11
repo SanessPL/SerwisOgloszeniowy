@@ -18,7 +18,8 @@ CREATE TABLE users (
 CREATE TABLE offers (
    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
    user_id INT NOT NULL REFERENCES users(id),
-   title varchar(50),
-   offer_description varchar(255)
+   title VARCHAR(50),
+   offer_description TEXT,
+   created_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
