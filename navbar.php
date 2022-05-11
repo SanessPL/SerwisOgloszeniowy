@@ -4,7 +4,7 @@
     <?php if (session_status() == PHP_SESSION_NONE) session_start() ?>
     <?php require_once "./boostrap.php"?>
     <nav class="menu">
-        <a class="item logo" href="<?php echo HOME_URL; ?>"><img src="<?php echo HOME_URL."/img/logo.png"; ?>" alt="ogloszenia"></a>
+        <a class="item logo" href="<?php echo HOME_URL ?>"><img src="<?php echo HOME_URL."/img/logo.png"; ?>" alt="ogloszenia"></a>
         <a class="item profile" href="<?php
         if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] == false) echo(HOME_URL."konto/login.php");
         else echo(HOME_URL."konto/");
@@ -21,7 +21,7 @@
         }
         ?>
 
-        <form action="<?php echo HOME_URL; ?>offer.php" class="item search">
+        <form action="<?php echo HOME_URL ?>offer.php" class="item search">
             <input type="number" name="id" placeholder="ID ogłoszenia" id="offer"> 
             <button type="submit">Otwórz</button>
         </form>

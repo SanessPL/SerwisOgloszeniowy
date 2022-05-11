@@ -12,7 +12,7 @@
     <?php include_once "./navbar.php" ?>
     
     <div class="page">
-        <div class="content">
+        <div class="content center">
             <?php
             require_once "./config.php";
 

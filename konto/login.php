@@ -37,7 +37,7 @@
 
         if (empty(trim(@$_POST["username"]))) {
             $username_err = "Proszę podać nazwę użytkownika.";
-        } elseif (preg_match("/[^A-z0-9]/", $_POST["username"])) {
+        } elseif (preg_match("/[^A-z0-9_]/", $_POST["username"])) {
             $username_err = "Nazwa użytkownika może zawierać tylko litery, cyfry i znak \"_\".";
         }
         else {
@@ -114,19 +114,21 @@
     
     ?>
 
-    <form action="" method="post">
-        Nie posiadasz konta? <a href="./register">Zarejestruj się</a>
-        <br>
-        <span class="error"><?php echo($login_err) ?></span>
-        <div>
-            <input type="text" name="username" placeholder="Nazwa Użytkownika" value="<?php echo($username) ?>">
-            <span class="error"><?php echo($username_err) ?></span>
+    <div class="page">
+        <div class="content center">
+            <form class="login" action="" method="post">
+                Nie posiadasz konta? <a href="./register">Zarejestruj się</a>
+                <br>
+                <span class="error"><?php echo($login_err) ?></span>
+                <span class="error"><?php echo($username_err) ?></span>
+                <span class="error"><?php echo($password_err) ?></span>
+
+                <input class="username" type="text" name="username" placeholder="Nazwa Użytkownika" value="<?php echo($username) ?>"><br>
+                <input class="password" type="password" name="password" placeholder="Hasło"><br>
+                <button type="submit">Zaloguj się</button>
+            </form>
         </div>
-        <div>
-            <input type="password" name="password" placeholder="Hasło">
-            <span class="error"><?php echo($password_err) ?></span>
-        </div>
-        <button type="submit">Zaloguj się</button>
-    </form>
+    </div>
+    <?php include_once HOME_URL."/footer.php" ?>
 </body>
 </html>

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/styles.css">
     <title>Zmiana hasła</title>
 </head>
 <body>
@@ -66,18 +67,27 @@
 
     ?>
 
-    <form action="" method="post">
-        <div>
-            <input type="password" name="password" id="password" placeholder="Hasło">
-            <span class="error"><?php echo $password_err; ?></span>
+    <?php require_once "boostrap.php" ?>
+    <?php require_once HOME_URL."navbar.php" ?>
+
+    <div class="page">
+        <div class="content center">
+            <form action="" method="post">
+                <div>
+                    <input type="password" name="password" id="password" placeholder="Hasło">
+                    <span class="error"><?php echo $password_err; ?></span>
+                </div>
+                <div>
+                    <input type="password" name="confirm_password" id="confirm_password" placeholder="Potwierdź hasło">
+                    <span class="error"><?php echo $confirm_password_err; ?></span>
+                </div>
+                <div>
+                    <input type="submit" value="Zmień hasło">
+                </div>
+            </form>
         </div>
-        <div>
-            <input type="password" name="confirm_password" id="confirm_password" placeholder="Potwierdź hasło">
-            <span class="error"><?php echo $confirm_password_err; ?></span>
-        </div>
-        <div>
-            <input type="submit" value="Zmień hasło">
-        </div>
-    </form>
+    </div>
+
+
 </body>
 </html>

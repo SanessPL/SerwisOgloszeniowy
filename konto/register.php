@@ -134,25 +134,25 @@
     
     ?>
 
-    <form action="#" method="post">
-        Masz już konto? <a href="./login">Zaloguj się</a>
-        <div>
-            <input type="text" name="username" placeholder="Nazwa Użytkownika">
-            <span class="error"><?php echo($username_err) ?></span>
+    <div class="page">
+        <div class="content center">
+            <form class="register" action="#" method="post">
+                Masz już konto? <a href="./login">Zaloguj się</a><br>
+                <span class="error"><?php echo($username_err) ?></span>
+                <span class="error"><?php echo($email_err) ?></span>
+                <span class="error"><?php echo($password_err) ?></span>
+                <span class="error"><?php echo($confirm_password_err) ?></span>
+                
+                <input type="text" name="username" class="username" placeholder="Nazwa Użytkownika"><br>
+                <input type="email" name="email" class="email" placeholder="E-mail"><br>
+                <input type="password" name="password" class="password" placeholder="Hasło"><br>
+                <input type="password" name="confirm_password" class="confirm_password" placeholder="Potwierdź Hasło"><br>
+                    
+                <button type="submit">Zarejestruj się</button>
+            </form>
         </div>
-        <div>
-            <input type="email" name="email" placeholder="E-mail">
-            <span class="error"><?php echo($email_err) ?></span>
-        </div>
-        <div>
-            <input type="password" name="password" placeholder="Hasło">
-            <span class="error"><?php echo($password_err) ?></span>
-        </div>
-        <div>
-            <input type="password" name="confirm_password" placeholder="Potwierdź Hasło">
-            <span class="error"><?php echo($confirm_password_err) ?></span>
-        </div>
-        <button type="submit">Zarejestruj się</button>
-    </form>
+    </div>
+
+    <?php include_once HOME_URL."/footer.php" ?>
 </body>
 </html>

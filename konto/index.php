@@ -18,8 +18,13 @@
     ?>
     <?php include_once HOME_URL."navbar.php"; ?>
 
-    <a href="logout.php">Wyloguj</a><br>
-    <a href="offers.php">Dodaj Ogłoszenie</a><br>
-    <a href="settings.php">Ustawienia Konta</a>
+    <div class="page">
+        <div class="content center">
+            <a href="offers.php">Dodaj Ogłoszenie</a><br>
+            <a href="settings.php">Ustawienia Konta</a><br>
+            <a href="logout.php">Wyloguj</a><br>
+        </div>
+    </div>    
+    <?php include_once HOME_URL."/footer.php" ?>
 </body>
 </html>

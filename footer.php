@@ -7,6 +7,9 @@
     <title>Footer</title>
 </head>
 <body>
-    <div class="footer">LOUDOSZENIA &copy;</div>
+    <div class="footer">
+        Serwis Ogłoszeniowy<br>
+        Autorstwa: Patryk Kurzątek i Karol Poplewski
+    </div>
 </body>
 </html>

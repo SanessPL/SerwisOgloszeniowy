@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <title>Dodaj Ogłoszenie</title>
 </head>
 <body>
     <?php 
@@ -33,10 +34,20 @@
     }
 
     ?>
-    <form action="#" method="post" enctype="multipart/form-data">
-        <input type="text" name="title" placeholder="Tytuł"><br>
-        <textarea name="offer_description" placeholder="Opis ogłoszenia"></textarea><br>
-        <button type="submit" >Dodaj ogłoszenie </button>
-    </form>
+
+    <?php require_once "boostrap.php" ?>
+    <?php require_once HOME_URL."navbar.php" ?>
+
+    <div class="page">
+        <div class="content center">
+            <form class="addOffer" action="" method="post">
+                <input type="text" name="title" placeholder="Tytuł"><br>
+                <textarea name="offer_description" placeholder="Opis ogłoszenia"></textarea><br>
+                <button type="submit" >Dodaj ogłoszenie </button>
+            </form>
+        </div>
+    </div>
+
+    <?php include_once HOME_URL."/footer.php" ?>
 </body>
 </html>

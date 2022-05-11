@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/styles.css">
     <title>Zmiana imienia</title>
 </head>
 <body>
@@ -108,18 +109,19 @@
 
     ?>
 
-    <form action="#" method="post">
-        <div>
-            <input type="text" name="first_name" placeholder="Imię">
+    <?php require_once "boostrap.php" ?>
+    <?php require_once HOME_URL."navbar.php" ?>
+
+    <div class="page">
+        <div class="content center">
             <span class="error"><?php echo($first_name_err) ?></span>
-        </div>
-        <div>
-            <input type="text" name="last_name" placeholder="Nazwisko">
             <span class="error"><?php echo($last_name_err) ?></span>
+            <form action="#" method="post">
+                <input type="text" name="first_name" placeholder="Imię"><br>
+                <input type="text" name="last_name" placeholder="Nazwisko"><br>
+                <input type="submit" value="Zmień dane">
+            </form>
         </div>
-        <div>
-            <input type="submit" value="Zmień dane">
-        </div>
-    </form>
+    </div>
 </body>
 </html>

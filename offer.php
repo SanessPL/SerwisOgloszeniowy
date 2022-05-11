@@ -9,46 +9,70 @@
 </head>
 <body>
     <?php include_once "navbar.php"; ?>
-    <div class="page">
-        <center>
-            <?php
-            if (!isset($_GET["id"]) || (empty($_GET["id"]) && $_GET["id"] != 0)) {
-                header("location: index.php");
-                exit;
+    <div class="page center">
+        <?php
+        if (!isset($_GET["id"]) || (empty($_GET["id"]) && $_GET["id"] != 0)) {
+            header("location: index.php");
+            exit;
+        }
+
+        require_once "config.php";
+
+        function getUser($id) {
+            global $conn;
+
+            $sql = "SELECT first_name, last_name FROM users WHERE id = $id";
+
+            $res = mysqli_query($conn, $sql);
+
+            if (mysqli_num_rows($res) == 0) {
+                return null;
             }
 
-            function displayOffer() {
-                require_once "config.php";
+            $row = mysqli_fetch_array($res);
 
-                $id = $_GET["id"];
+            return $row;
+        }
 
-                $sql = "SELECT title, offer_description, created_at FROM offers WHERE id = $id";
-                
-                $res = mysqli_query($conn, $sql);
-                
-                if (mysqli_num_rows($res) == 0) {
-                    echo("<div class=\"info\">");
-                    echo("<div class=\"error\">"."To ogłoszenie nie istnieje lub zostało usunięte."."</div>");
-                    echo("<a href=\"".HOME_URL."\">Wróć</a>");
-                    echo("</div>");
+        function displayOffer() {
+            global $conn;
 
-                    return;
-                }
+            $id = $_GET["id"];
 
-                echo("<div class=\"offer big\">");
+            $sql = "SELECT user_id, title, offer_description, created_at FROM offers WHERE id = $id";
+            
+            $res = mysqli_query($conn, $sql);
+            
+            if (mysqli_num_rows($res) == 0) {
+                echo("<div class=\"info\">");
+                echo("<div class=\"error\">"."To ogłoszenie nie istnieje lub zostało usunięte."."</div>");
+                echo("<a href=\"".HOME_URL."\">Wróć</a>");
+                echo("</div>");
 
-                while ($row = mysqli_fetch_array($res)) {
-                    echo("<div class=\"title\">".$row["title"]."</div>");
-                    echo("<div class=\"description\">".$row["offer_description"]."</div>");
-                    echo("<div class=\"createdAt\">".$row["created_at"]."</div>");
-                }
-
-                echo("</div>");            
+                return;
             }
 
-            displayOffer();
-            ?>
-        </center>
+            echo("<div class=\"offer big\">");
+
+            while ($row = mysqli_fetch_array($res)) {
+                $author = getUser($row["user_id"]);
+                
+                echo("<div class=\"title\">".$row["title"]."</div>");
+                    
+                if ($author) {
+                    echo("<div class=\"author\">".$author["first_name"]." ".$author["last_name"]."</div>");
+                }
+
+                echo("<div class=\"description\">".$row["offer_description"]."</div>");
+                echo("<div class=\"createdAt\">".$row["created_at"]."</div>");
+            }
+
+            echo("</div>");            
+        }
+
+        displayOffer();
+        ?>
     </div>
+    <?php include_once "./footer.php" ?>
 </body>
 </html>
