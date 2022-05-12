@@ -154,6 +154,11 @@ a:hover {
     font-weight: bold;
 }
 
+.warn {
+    color: hsl(40, 100%, 75%);
+    font-weight: bold;
+}
+
 .footer {
     position: fixed;
     right: 0;

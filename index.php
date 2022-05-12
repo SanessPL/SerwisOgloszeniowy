@@ -41,8 +41,7 @@
                 
                 if (mysqli_num_rows($res) == 0) {
                     echo("<div class=\"info\">");
-                    echo("<div class=\"error\">"."To ogłoszenie nie istnieje lub zostało usunięte."."</div>");
-                    echo("<a href=\"".HOME_URL."\">Wróć</a>");
+                    echo("<div class=\"warn\">"."Nie ma jeszcze żadnych ogłoszeń!"."</div>");
                     echo("</div>");
     
                     return;
