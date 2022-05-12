@@ -105,12 +105,14 @@
         }
 
         if (empty($username_err) && empty($email_err) && empty($password_err) && empty($confirm_password_err)) {
-            $sql = "INSERT INTO users (username, email, password) VALUES (?, ?, ?)";
+            $sql = "INSERT INTO users (username, email, first_name, last_name, password) VALUES (?, ?, ?, ?, ?)";
 
             if ($stmt = $conn->prepare($sql)) {
-                $stmt->bind_param("sss", $param_username, $param_email, $param_password);
+                $stmt->bind_param("sssss", $param_username, $param_firstname, $param_lastname, $param_email, $param_password);
 
                 $param_username = $username;
+                $param_firstname = $_POST["firstname"];
+                $param_lastname = $_POST["lastname"];
                 $param_email = $email;
                 $param_password = password_hash($password, PASSWORD_DEFAULT);
 
@@ -144,6 +146,8 @@
                 <span class="error"><?php echo($confirm_password_err) ?></span>
                 
                 <input type="text" name="username" class="username" placeholder="Nazwa Użytkownika"><br>
+                <input type="text" name="firstname" class="firstname" placeholder="Imię"><br>
+                <input type="text" name="lastname" class="lastname" placeholder="Nazwisko"><br>
                 <input type="email" name="email" class="email" placeholder="E-mail"><br>
                 <input type="password" name="password" class="password" placeholder="Hasło"><br>
                 <input type="password" name="confirm_password" class="confirm_password" placeholder="Potwierdź Hasło"><br>

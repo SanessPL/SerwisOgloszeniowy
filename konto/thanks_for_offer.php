@@ -8,8 +8,7 @@
 </head>
 <body>
     <?php
-        echo("Dziękujemy za dodanie ogłoszenia!");
-        header("refresh:3; url=../index.php");
+        header("Location: ../index.php");
     ?>
 </body>
 </html>
