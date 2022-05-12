@@ -9,28 +9,13 @@
 </head>
 <body>
     <?php session_start(); ?>
+
     <?php include_once "./navbar.php" ?>
     
     <div class="page">
         <div class="content center">
             <?php
             require_once "./config.php";
-
-            function getUser($id) {
-                global $conn;
-
-                $sql = "SELECT first_name, last_name FROM users WHERE id = $id";
-
-                $res = mysqli_query($conn, $sql);
-
-                if (mysqli_num_rows($res) == 0) {
-                    return null;
-                }
-
-                $row = mysqli_fetch_array($res);
-
-                return $row;
-            }
 
             function displayOffers() {
                 global $conn;
@@ -41,14 +26,12 @@
                 
                 if (mysqli_num_rows($res) == 0) {
                     echo("<div class=\"info\">");
-                    echo("<div class=\"error\">"."To ogłoszenie nie istnieje lub zostało usunięte."."</div>");
-                    echo("<a href=\"".HOME_URL."\">Wróć</a>");
+                    echo("<div class=\"warn\">"."Nie ma jeszcz żadnych ogłoszeń!"."</div>");
                     echo("</div>");
     
                     return;
                 }
     
-                echo("<center>");
                 while ($row = mysqli_fetch_array($res)) {
                     $description = $row["offer_description"];
 
@@ -65,14 +48,13 @@
                     echo("<a class=\"title\" href=\"$href\">".$row["title"]."</a>");
                     
                     if ($author) {
-                        echo("<div class=\"author\">".$author["first_name"]." ".$author["last_name"]."</div>");
+                        echo("<div class=\"author\">"."by: ".$author["first_name"]." ".$author["last_name"]." (".$author["username"].") "."</div>");
                     }
 
                     echo("<div class=\"description\">".$description."</div>");
                     echo("<div class=\"createdAt\">".$row["created_at"]."</div>");
                     echo("</div>");
                 }
-                echo("</center>");
 
                 mysqli_close($conn);
             }

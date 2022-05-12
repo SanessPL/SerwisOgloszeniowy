@@ -21,9 +21,9 @@
         }
         ?>
 
-        <form action="<?php echo HOME_URL ?>offer.php" class="item search">
-            <input type="number" name="id" placeholder="ID ogłoszenia" id="offer"> 
-            <button type="submit">Otwórz</button>
+        <form action="<?php echo HOME_URL ?>search.php" class="item search">
+            <input type="text" name="s" placeholder="Wyszukaj" class="toSearch" value="<?php if (isset($searchValue)) echo $searchValue ?>"> 
+            <button type="submit">Szukaj</button>
         </form>
     </nav>
 </body>

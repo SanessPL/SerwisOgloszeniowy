@@ -8,10 +8,9 @@
     <title>Logowanie</title>
 </head>
 <body>
-    <?php require_once "../navbar.php" ?>
     <?php
     /**
-    * Login system.
+     * Login system.
     * 
     * @access	private
     * @author 	Patryk Kurzątek
@@ -114,6 +113,8 @@
     
     ?>
 
+    <?php include_once "boostrap.php"; ?>
+    <?php include_once HOME_URL."navbar.php"; ?>
     <div class="page">
         <div class="content center">
             <form class="login" action="" method="post">

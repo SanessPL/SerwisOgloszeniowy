@@ -18,22 +18,6 @@
 
         require_once "config.php";
 
-        function getUser($id) {
-            global $conn;
-
-            $sql = "SELECT first_name, last_name FROM users WHERE id = $id";
-
-            $res = mysqli_query($conn, $sql);
-
-            if (mysqli_num_rows($res) == 0) {
-                return null;
-            }
-
-            $row = mysqli_fetch_array($res);
-
-            return $row;
-        }
-
         function displayOffer() {
             global $conn;
 
@@ -60,7 +44,7 @@
                 echo("<div class=\"title\">".$row["title"]."</div>");
                     
                 if ($author) {
-                    echo("<div class=\"author\">".$author["first_name"]." ".$author["last_name"]."</div>");
+                    echo("<div class=\"author\">"."by: ".$author["first_name"]." ".$author["last_name"]." (".$author["username"].") "."</div>");
                 }
 
                 echo("<div class=\"description\">".$row["offer_description"]."</div>");

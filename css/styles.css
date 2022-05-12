@@ -36,7 +36,6 @@ a:hover {
 .menu {
     background-color: var(--color-0);
     color: var(--color-4);
-    height: min(64px, 50vh);
     position: relative;
     white-space: nowrap;
     overflow: hidden;
@@ -50,7 +49,7 @@ a:hover {
     
     text-align: center;
     
-    height: 100%;
+    height: min(64px, 50vh);
     min-width: 128px;
     
     margin: 0 8px;
@@ -86,7 +85,7 @@ a:hover {
     float: right;
 }
 
-.search > #offer {
+.search > .toSearch {
     height: 75%;
     padding-left: 16px;
     border: 0;
@@ -154,6 +153,11 @@ a:hover {
     font-weight: bold;
 }
 
+.warn {
+    color: hsl(30, 100%, 75%);
+    font-weight: bold;
+}
+
 .footer {
     position: fixed;
     right: 0;
@@ -203,4 +207,36 @@ button:hover {
 
 :is(.login, .register) button {
     margin-top: 4px;
+}
+
+.header {
+    font-size: 1.4em;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+
+@media screen and (max-width: 980px) {
+        
+    .menu > :is(.item, :not(.logo)) {
+        transform: translateX(-50%);
+        border-radius: 8px;
+        width: 50%;
+    }
+
+    .menu > .item.logo {
+        transform: translateX(50%);
+    }
+}
+
+@media screen and (max-width: 720px) {
+    .menu > :is(.item, :not(.logo)) {
+        transform: translateX(-10%);
+        border-radius: 8px;
+        width: 80%;
+    }
+
+    .menu > .item.logo {
+        transform: translateX(10%);
+    }
 }

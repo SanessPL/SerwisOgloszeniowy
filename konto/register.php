@@ -33,8 +33,8 @@
 
         if (empty(trim(@$_POST["username"]))) {
             $username_err = "Wprowadz nazwe uzytkownika.";
-        } else if (!preg_match('//', trim(@$_POST["username"]))) {
-            
+        } elseif (preg_match("/[^A-z0-9_]/", $_POST["username"])) {
+            $username_err = "Nazwa użytkownika może zawierać tylko litery, cyfry i znak \"_\".";
         } else {
             $sql = "SELECT id FROM users WHERE username = ?";
 
@@ -61,8 +61,6 @@
 
         if (empty(trim(@$_POST["email"]))) {
             $email_err = "Wprowadz email.";
-        } elseif (!preg_match('//', trim(@$_POST["username"]))) {
-            
         } else {
             $sql = "SELECT id FROM users WHERE email = ?";
 

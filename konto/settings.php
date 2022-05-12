@@ -22,7 +22,10 @@
 
     <div class="page">
         <div class="content center">
-            <a href="change_name.php">Zmień imię</a><br>
+            <?php
+                echo("<div class=\"header\">".$_SESSION["first_name"]." ".$_SESSION["last_name"]." (".$_SESSION["username"].")"."</div>");
+            ?>
+            <a href="change_name.php">Zmień imię i nazwisko</a><br>
             <a href="change_password.php">Zmień hasło</a><br>
             <a href="logout.php">Wyloguj</a>
         </div>

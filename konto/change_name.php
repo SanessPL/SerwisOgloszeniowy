@@ -93,6 +93,9 @@
             $param_id = $_SESSION["id"];
 
             if ($stmt->execute()) {
+                $_SESSION["first_name"] = $first_name;
+                $_SESSION["last_name"] = $last_name;
+
                 header("location: settings.php");
             } else {
                 echo("Coś poszło nie tak.");
