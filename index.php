@@ -26,7 +26,7 @@
                 
                 if (mysqli_num_rows($res) == 0) {
                     echo("<div class=\"info\">");
-                    echo("<div class=\"warn\">"."Nie ma jeszcz żadnych ogłoszeń!"."</div>");
+                    echo("<div class=\"warn\">"."Nie ma jeszcze żadnych ogłoszeń!"."</div>");
                     echo("</div>");
     
                     return;
