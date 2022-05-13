@@ -73,17 +73,11 @@
     <div class="page">
         <div class="content center">
             <form action="" method="post">
-                <div>
-                    <input type="password" name="password" id="password" placeholder="Hasło">
-                    <span class="error"><?php echo $password_err; ?></span>
-                </div>
-                <div>
-                    <input type="password" name="confirm_password" id="confirm_password" placeholder="Potwierdź hasło">
-                    <span class="error"><?php echo $confirm_password_err; ?></span>
-                </div>
-                <div>
-                    <input type="submit" value="Zmień hasło">
-                </div>
+                <span class="error"><?php if (!empty($password_err)) echo $password_err."<br>"; ?></span>
+                <span class="error"><?php if (!empty($confirm_password_err)) echo $confirm_password_err."<br>"; ?></span>
+                <input type="password" name="password" id="password" placeholder="Hasło"><br>
+                <input type="password" name="confirm_password" id="confirm_password" placeholder="Potwierdź hasło"><br>
+                <button type="submit">Zmień hasło</button>
             </form>
         </div>
     </div>

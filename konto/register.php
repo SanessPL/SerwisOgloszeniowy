@@ -138,10 +138,10 @@
         <div class="content center">
             <form class="register" action="#" method="post">
                 Masz już konto? <a href="./login">Zaloguj się</a><br>
-                <span class="error"><?php echo($username_err) ?></span>
-                <span class="error"><?php echo($email_err) ?></span>
-                <span class="error"><?php echo($password_err) ?></span>
-                <span class="error"><?php echo($confirm_password_err) ?></span>
+                <span class="error"><?php if (!empty($username_err)) echo($username_err."<br>") ?></span>
+                <span class="error"><?php if (!empty($email_err)) echo($email_err."<br>") ?></span>
+                <span class="error"><?php if (!empty($password_err)) echo($password_err."<br>") ?></span>
+                <span class="error"><?php if (!empty($confirm_password_err)) echo($confirm_password_err."<br>") ?></span>
                 
                 <input type="text" name="username" class="username" placeholder="Nazwa Użytkownika"><br>
                 <input type="text" name="firstname" class="firstname" placeholder="Imię"><br>

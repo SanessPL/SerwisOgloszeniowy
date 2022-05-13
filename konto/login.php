@@ -118,11 +118,10 @@
     <div class="page">
         <div class="content center">
             <form class="login" action="" method="post">
-                Nie posiadasz konta? <a href="./register">Zarejestruj się</a>
-                <br>
-                <span class="error"><?php echo($login_err) ?></span>
-                <span class="error"><?php echo($username_err) ?></span>
-                <span class="error"><?php echo($password_err) ?></span>
+                Nie posiadasz konta? <a href="./register">Zarejestruj się</a><br>
+                <span class="error"><?php if (!empty($login_err)) echo($login_err."<br>") ?></span>
+                <span class="error"><?php if (!empty($username_err)) echo($username_err."<br>") ?></span>
+                <span class="error"><?php if (!empty($password_err)) echo($password_err."<br>") ?></span>
 
                 <input class="username" type="text" name="username" placeholder="Nazwa Użytkownika" value="<?php echo($username) ?>"><br>
                 <input class="password" type="password" name="password" placeholder="Hasło"><br>

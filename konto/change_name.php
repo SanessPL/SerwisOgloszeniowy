@@ -117,8 +117,8 @@
 
     <div class="page">
         <div class="content center">
-            <span class="error"><?php echo($first_name_err) ?></span>
-            <span class="error"><?php echo($last_name_err) ?></span>
+            <span class="error"><?php if (!empty($first_name_err)) echo($first_name_err."<br>") ?></span>
+            <span class="error"><?php if (!empty($last_name_err)) echo($last_name_err."<br>") ?></span>
             <form action="#" method="post">
                 <input type="text" name="first_name" placeholder="Imię"><br>
                 <input type="text" name="last_name" placeholder="Nazwisko"><br>
