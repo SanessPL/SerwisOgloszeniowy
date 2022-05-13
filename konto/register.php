@@ -106,7 +106,7 @@
             $sql = "INSERT INTO users (username, email, first_name, last_name, password) VALUES (?, ?, ?, ?, ?)";
 
             if ($stmt = $conn->prepare($sql)) {
-                $stmt->bind_param("sssss", $param_username, $param_firstname, $param_lastname, $param_email, $param_password);
+                $stmt->bind_param("sssss", $param_username, $param_email, $param_firstname, $param_lastname, $param_password);
 
                 $param_username = $username;
                 $param_firstname = $_POST["firstname"];
